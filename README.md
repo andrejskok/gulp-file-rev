@@ -20,20 +20,22 @@ npm install --save-dev gulp-file-rev
 Then, add it to your `gulpfile.js`:
 
 ```js
-var gulp = require('gulp');
-var gulpIf = require('gulp-if');
-var fileRev = require('gulp-file-rev');
+var gulp = require("gulp");
+var gulpIf = require("gulp-if");
+var fileRev = require("gulp-file-rev");
 
-gulp.task('default', function() {
-	var revision = fileRev();
+gulp.task("default", function() {
+  var revision = fileRev();
 
-	return gulp
-		.src('**/*')
-		// revise files
-		.pipe(gulpIf('**/*.{jpg,png,gif}', revision))
-		// replace references
-		.pipe(gulpIf('**/*.{html,css,js}', revision.replace))
-		.pipe(gulp.dest('dist'));
+  return (
+    gulp
+      .src("**/*")
+      // revise files
+      .pipe(gulpIf("**/*.{jpg,png,gif}", revision))
+      // replace references
+      .pipe(gulpIf("**/*.{html,css,js}", revision.replace))
+      .pipe(gulp.dest("dist"))
+  );
 });
 ```
 
@@ -79,7 +81,7 @@ Default: `false`
 
 ##### options.prefix
 
-The prefix to prepended to the file path, which is usually used to prepend the CDN host. *Please notice that you should set `options.cwd` properly.*
+The prefix to prepended to the file path, which is usually used to prepend the CDN host. _Please notice that you should set `options.cwd` properly._
 
 Type: `String`
 
@@ -92,6 +94,14 @@ Current working directory for prefix prepending, only has an effect if `options.
 Type: `String`
 
 Default: `process.cwd()`
+
+##### options.quiet
+
+Quiet the logs written into output
+
+Type: `Boolean`
+
+Default: `false`
 
 [build-url]: https://circleci.com/gh/Lanfei/gulp-file-rev
 [build-image]: https://img.shields.io/circleci/project/github/Lanfei/gulp-file-rev.svg
